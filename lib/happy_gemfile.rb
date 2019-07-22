@@ -73,9 +73,7 @@ module HappyGemfile
 
       organized = []
 
-      groups[:not_gems].each {|line| organized << line << "\n"}
-
-      organized << "\n"
+      groups[:not_gems].each {|line| organized << line << "\n\n"}
 
       groups[:general].each {|line| organized << line << "\n"}
 
