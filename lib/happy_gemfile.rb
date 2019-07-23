@@ -73,18 +73,14 @@ module HappyGemfile
 
       organized = []
 
-      groups[:not_gems].each {|line| organized << line << "\n"}
-
-      organized << "\n"
+      groups[:not_gems].each {|line| organized << line << "\n\n"}
 
       groups[:general].each {|line| organized << line << "\n"}
 
-      organized << "\n"
-
       (groups.keys - [:general, :not_gems]).each do |group|
-        organized << "group #{group_line(group)} do" << "\n"
+        organized << "\n" << "group #{group_line(group)} do" << "\n"
         groups[group].each {|line| organized << "#{line}" << "\n"}
-        organized << 'end' << "\n\n"
+        organized << 'end' << "\n"
       end
       organized
     end
@@ -112,7 +108,7 @@ module HappyGemfile
     end
 
     def self.gemfile
-      unless File.exists? "Gemfile"
+      unless File.exist? "Gemfile"
         puts "There doesn't appear to be a Gemfile... not sure what to do."
         return false
       end
